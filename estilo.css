@@ -31,28 +31,28 @@ body{
   height: 28px;
 }
 
-.line{  
+.linha{  
   height: 2em;
 }
-.word, .clue{
+.palavra, .dica{
   display: inline-block;
   height: 1.5em;  
   padding: 0 5px;
 }
-.word{
+.palavra{
   text-align: right;  
   width: 100px;
 }
-.clue{
+.dica{
   width: 500px;
 }
 
 
-.crossword{
+.cacaPalavra{
   display: block;  
   background-color: rgb(32,32,32);  
 }
-.square{  
+.quadrado{  
   margin: 0 1px 1px 0;
   display: inline-block;
   font: 24px Calibri;
@@ -68,7 +68,7 @@ body{
   -ms-user-select: none;
   user-select: none;
 }
-.letter{
+.letra{
   background-color: rgb(255,255,255);
    
   -webkit-touch-callout: text;
@@ -100,7 +100,7 @@ body{
   visibility: hidden;
 }
 
-.clueReadOnly
+.somenteLeitura
 {
   border: 0 ;
   outline: 0;
