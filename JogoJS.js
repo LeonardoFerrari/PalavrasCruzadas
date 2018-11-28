@@ -312,13 +312,13 @@ function objPalavra(stringValue){
 
 // Eventos
 
-function RegisterEvents(){
+function registraEventos(){
   document.getElementById("cacaPalavra").onfocus = function (){ 
     return false; }
   document.getElementById("btnCriar").addEventListener('click',Criar,false);
-  document.getElementById("btnjogar").addEventListener('click',jogar,false);
+  document.getElementById("btnJogar").addEventListener('click',jogar,false);
 }
-RegisterEvents();
+registraEventos();
 
 
 // Funções de ajuda
