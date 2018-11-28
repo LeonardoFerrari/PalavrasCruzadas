@@ -2,21 +2,21 @@
 
 var tabuleiro, vetorPalavra, palavras, palavrasAtivas, auxCriar;
 
-var Bounds = {  
-  top:0, right:0, bottom:0, left:0,
+var limites = {  
+  superior:0, direita:0, inferior:0, esquerda:0,
 
-  Update:function(x,y){
-    this.top = Math.min(y,this.top);
-    this.right = Math.max(x,this.right);
-    this.bottom = Math.max(y,this.bottom);
-    this.left = Math.min(x,this.left);
+  Atualiza:function(x,y){
+    this.superior = Math.min(y,this.superior);
+    this.direita = Math.max(x,this.direita);
+    this.inferior = Math.max(y,this.inferior);
+    this.esquerda = Math.min(x,this.esquerda);
   },
   
-  Clean:function(){
-    this.top = 999;
-    this.right = 0;
-    this.bottom = 0;    
-    this.left = 999;
+  Limpa:function(){
+    this.superior = 999;
+    this.direita = 0;
+    this.inferior = 0;    
+    this.esquerda = 999;    
   }
 };
 
@@ -24,67 +24,67 @@ var Bounds = {
 // Main
 
 function jogar(){
-  var letterArr = document.getElementsByClassName('letter');
+  var vetorLetra = document.getElementsByClassName('letra');
   
-  for(var i = 0; i < letterArr.length; i++){
-    letterArr[i].innerHTML = "<input class='char' type='text' maxlength='1'></input>";
+  for(var i = 0; i < vetorLetra.length; i++){
+    vetorLetra[i].innerHTML = "<input class='char' type='text' maxlength='1'></input>";
   }
   
   auxCriar = 0;
-  ToggleInputBoxes(false);
+  alternarCaixasEntrada(false);
 }
 
 
 function Criar(){
   if (auxCriar === 0){
-    ToggleInputBoxes(true);
-    document.getElementById("crossword").innerHTML = tabuProHtml(" ")
+    alternarCaixasEntrada(true);
+    document.getElementById("cacaPalavra").innerHTML = tabuProHtml(" ")
     auxCriar = 1;
   }
   else{  
-    GetWordsFromInput();
+    getPalavrasInseridas();
 
-    for(var i = 0, isSuccess=false; i < 10 && !isSuccess; i++){
-      CleanVars();
-      isSuccess = preencherTabu();
+    for(var i = 0, deuCerto=false; i < 10 && !deuCerto; i++){
+      limparVariaveis(); // Seta os valores esq,dir,cima,baixo
+      deuCerto = preencherTabu(); //Adiciona palavras ao tabuleiro
     }
 
-    document.getElementById("crossword").innerHTML = 
-      (isSuccess) ? tabuProHtml(" ") : "Failed to find crossword." ;
+    document.getElementById("cacaPalavra").innerHTML = 
+      (deuCerto) ? tabuProHtml(" ") : "Caça palavras não encontrado." ; //Se deu certo for falso, significa que não existe o caça palavras. Se for verdadeiro ele printa o tabuleiro
   }
 }
 
 
-function ToggleInputBoxes(active){
-  var w=document.getElementsByClassName('word'),
-      d=document.getElementsByClassName('clue');
+function alternarCaixasEntrada(ativo){
+  var p=document.getElementsByClassName('palavra'),
+      d=document.getElementsByClassName('dica');
   
-  for(var i=0;i<w.length; i++){
-    if(active===true){
-      RemoveClass(w[i], 'hide');
-      RemoveClass(d[i], 'clueReadOnly');
-      d[i].disabled = '';
+  for(var i=0;i<p.length; i++){
+    if(ativo===true){
+      retiraClasse(p[i], 'hide');
+      retiraClasse(d[i], 'somenteLeitura');
+      d[i].disabled = ''; // Deixa o d desabilitado
     }
     else{
-      AddClass(w[i], 'hide');
-      AddClass(d[i], 'clueReadOnly');
-      d[i].disabled = 'readonly';
+      adicionaClasse(p[i], 'hide');
+      adicionaClasse(d[i], 'somenteLeitura');
+      d[i].disabled = 'somenteLer'; // Deixa o d desabilitado
     }
   }
 }
 
 
-function GetWordsFromInput(){
+function getPalavrasInseridas(){
   vetorPalavra = [];  
-  for(var i=0,val,w=document.getElementsByClassName("word");i<w.length;i++){
-    val = w[i].value.toUpperCase();
-    if (val !== null && val.length > 1){vetorPalavra.push(val);}
+  for(var i=0,val,p=document.getElementsByClassName("palavra");i<p.length;i++){
+    val = p[i].value.toUpperCase(); // Muda o valor do textfield da palavra para Maiusculo e armazena em val
+    if (val !== null && val.length > 1){vetorPalavra.push(val);} // Se val der certo, ele da um push(empurra) na função vetor
   }
 }
 
 
-function CleanVars(){
-  Bounds.Clean();
+function limparVariaveis(){
+  limites.Limpa();
   palavras = [];
   palavrasAtivas = [];
   tabuleiro = [];
@@ -112,14 +112,14 @@ function prepararTabu(){
   palavras=[];
   
   for(var i = 0, len = vetorPalavra.length; i < len; i++){
-    palavras.push(new WordObj(vetorPalavra[i]));
+    palavras.push(new objPalavra(vetorPalavra[i]));
   }
   
   for(i = 0; i < palavras.length; i++){
-    for(var j = 0, wA=palavras[i]; j<wA.char.length; j++){
-      for(var k = 0, cA=wA.char[j]; k<palavras.length; k++){
-        for(var l = 0,wB=palavras[k]; k!==i && l<wB.char.length; l++){
-          wA.totalMatches += (cA === wB.char[l])?1:0;
+    for(var j = 0, palavraA=palavras[i]; j<palavraA.char.length; j++){
+      for(var k = 0, cA=palavraA.char[j]; k<palavras.length; k++){
+        for(var l = 0,palavraB=palavras[k]; k!==i && l<palavraB.char.length; l++){
+          palavraA.todosEncontros += (cA === palavraB.char[l])?1:0;
         }
       }
     }
@@ -127,38 +127,38 @@ function prepararTabu(){
 }
 
 
-
+//Inicializaçao da função que adiciona palavra no tabuleiro e faz algumas verificações
 function addPalavraTabuleiro(){
-  var i, len, curIndex, palavraAtual, curChar, curMatch, testWord, testChar, 
-      minMatchDiff = 9999, curMatchDiff;  
+  var i, len, indiceAtual, palavraAtual, charAtual, curMatch, palavraTeste, charTeste, 
+      minCombinaDiff = 9999, CombinacaoAtualDiff;  
 
   if(palavrasAtivas.length < 1){
-    curIndex = 0;
+    indiceAtual = 0;
     for(i = 0, len = palavras.length; i < len; i++){
-      if (palavras[i].totalMatches < palavras[curIndex].totalMatches){
-        curIndex = i;
+      if (palavras[i].todosEncontros < palavras[indiceAtual].todosEncontros){
+        indiceAtual = i;
       }
     }
-    palavras[curIndex].successfulMatches = [{x:12,y:12,dir:0}];
+    palavras[indiceAtual].combinacoesCertas = [{x:12,y:12,dir:0}];
   }
   else{  
-    curIndex = -1;
+    indiceAtual = -1;
     
     for(i = 0, len = palavras.length; i < len; i++){
       palavraAtual = palavras[i];
       palavraAtual.effectiveMatches = 0;
-      palavraAtual.successfulMatches = [];
+      palavraAtual.combinacoesCertas = [];
       for(var j = 0, lenJ = palavraAtual.char.length; j < lenJ; j++){
-        curChar = palavraAtual.char[j];
+        charAtual = palavraAtual.char[j];
         for (var k = 0, lenK = palavrasAtivas.length; k < lenK; k++){
-          testWord = palavrasAtivas[k];
-          for (var l = 0, lenL = testWord.char.length; l < lenL; l++){
-            testChar = testWord.char[l];            
-            if (curChar === testChar){
+          palavraTeste = palavrasAtivas[k];
+          for (var l = 0, lenL = palavraTeste.char.length; l < lenL; l++){
+            charTeste = palavraTeste.char[l];            
+            if (charAtual === charTeste){
               palavraAtual.effectiveMatches++;
               
-              var cruzadaAtual = {x:testWord.x,y:testWord.y,dir:0};              
-              if(testWord.dir === 0){                
+              var cruzadaAtual = {x:palavraTeste.x,y:palavraTeste.y,dir:0};              
+              if(palavraTeste.dir === 0){                
                 cruzadaAtual.dir = 1;
                 cruzadaAtual.x += l;
                 cruzadaAtual.y -= j;
@@ -168,35 +168,35 @@ function addPalavraTabuleiro(){
                 cruzadaAtual.y += l;
                 cruzadaAtual.x -= j;
               }
-              
+              //variavel booleana para definir se os char sao iguais ou nao
               var saoIguais = true;
               
               for(var m = -1, lenM = palavraAtual.char.length + 1; m < lenM; m++){
                 var crossVal = [];
                 if (m !== j){
                   if (cruzadaAtual.dir === 0){
-                    var xIndex = cruzadaAtual.x + m;
+                    var indiceX = cruzadaAtual.x + m;
                     
-                    if (xIndex < 0 || xIndex > tabuleiro.length){
+                    if (indiceX < 0 || indiceX > tabuleiro.length){
                       saoIguais = false;
                       break;
                     }
                     
-                    crossVal.push(tabuleiro[xIndex][cruzadaAtual.y]);
-                    crossVal.push(tabuleiro[xIndex][cruzadaAtual.y + 1]);
-                    crossVal.push(tabuleiro[xIndex][cruzadaAtual.y - 1]);
+                    crossVal.push(tabuleiro[indiceX][cruzadaAtual.y]);
+                    crossVal.push(tabuleiro[indiceX][cruzadaAtual.y + 1]);
+                    crossVal.push(tabuleiro[indiceX][cruzadaAtual.y - 1]);
                   }
                   else{
-                    var yIndex = cruzadaAtual.y + m;
+                    var indiceY = cruzadaAtual.y + m;
                     
-                    if (yIndex < 0 || yIndex > tabuleiro[cruzadaAtual.x].length){
+                    if (indiceY < 0 || indiceY > tabuleiro[cruzadaAtual.x].length){
                       saoIguais = false;
                       break;
                     }
                     
-                    crossVal.push(tabuleiro[cruzadaAtual.x][yIndex]);
-                    crossVal.push(tabuleiro[cruzadaAtual.x + 1][yIndex]);
-                    crossVal.push(tabuleiro[cruzadaAtual.x - 1][yIndex]);
+                    crossVal.push(tabuleiro[cruzadaAtual.x][indiceY]);
+                    crossVal.push(tabuleiro[cruzadaAtual.x + 1][indiceY]);
+                    crossVal.push(tabuleiro[cruzadaAtual.x - 1][indiceY]);
                   }
 
                   if(m > -1 && m < lenM-1){
@@ -223,56 +223,57 @@ function addPalavraTabuleiro(){
               }
               
               if (saoIguais === true){                
-                palavraAtual.successfulMatches.push(cruzadaAtual);
+                palavraAtual.combinacoesCertas.push(cruzadaAtual); // Se forem iguais ira dar um push
               }
             }
           }
         }
       }
       
-      curMatchDiff = palavraAtual.totalMatches - palavraAtual.effectiveMatches;
+      CombinacaoAtualDiff = palavraAtual.todosEncontros - palavraAtual.effectiveMatches;
       
-      if (curMatchDiff<minMatchDiff && palavraAtual.successfulMatches.length>0){
-        curMatchDiff = minMatchDiff;
-        curIndex = i;
+      if (CombinacaoAtualDiff<minCombinaDiff && palavraAtual.combinacoesCertas.length>0){
+        CombinacaoAtualDiff = minCombinaDiff;
+        indiceAtual = i;
       }
-      else if (curMatchDiff <= 0){
+      else if (CombinacaoAtualDiff <= 0){
         return false;
       }
     }
   }
   
-  if (curIndex === -1){
+  if (indiceAtual === -1){
     return false;
   }
-    
-  var spliced = palavras.splice(curIndex, 1);
-  palavrasAtivas.push(spliced[0]);
+  // A função splice ajuda a alocar em uma posição especifica  
+  var divide = palavras.splice(indiceAtual, 1);
+  palavrasAtivas.push(divide[0]);
+
   
-  var pushIndex = palavrasAtivas.length - 1,
+  var pushIndice = palavrasAtivas.length - 1,
       rand = Math.random(),
-      matchArr = palavrasAtivas[pushIndex].successfulMatches,
-      matchIndex = Math.floor(rand * matchArr.length),  
-      matchData = matchArr[matchIndex];
+      vetorCombinacao = palavrasAtivas[pushIndice].combinacoesCertas,
+      indiceCombinacao = Math.floor(rand * vetorCombinacao.length),  
+      dadosCombinacao = vetorCombinacao[indiceCombinacao];
   
-  palavrasAtivas[pushIndex].x = matchData.x;
-  palavrasAtivas[pushIndex].y = matchData.y;
-  palavrasAtivas[pushIndex].dir = matchData.dir;
+  palavrasAtivas[pushIndice].x = dadosCombinacao.x;
+  palavrasAtivas[pushIndice].y = dadosCombinacao.y;
+  palavrasAtivas[pushIndice].dir = dadosCombinacao.dir;
   
-  for(i = 0, len = palavrasAtivas[pushIndex].char.length; i < len; i++){
-    var xIndex = matchData.x,
-        yIndex = matchData.y;
+  for(i = 0, len = palavrasAtivas[pushIndice].char.length; i < len; i++){
+    var indiceX = dadosCombinacao.x,
+        indiceY = dadosCombinacao.y;
     
-    if (matchData.dir === 0){
-      xIndex += i;    
-      tabuleiro[xIndex][yIndex] = palavrasAtivas[pushIndex].char[i];
+    if (dadosCombinacao.dir === 0){
+      indiceX += i;    
+      tabuleiro[indiceX][indiceY] = palavrasAtivas[pushIndice].char[i];
     }
     else{
-      yIndex += i;  
-      tabuleiro[xIndex][yIndex] = palavrasAtivas[pushIndex].char[i];
+      indiceY += i;  
+      tabuleiro[indiceX][indiceY] = palavrasAtivas[pushIndice].char[i];
     }
     
-    Bounds.Update(xIndex,yIndex);
+    limites.Atualiza(indiceX,indiceY);
   }
     
   return true;
@@ -280,9 +281,9 @@ function addPalavraTabuleiro(){
 
 
 function tabuProHtml(blank){
-  for(var i=Bounds.top-1, str=""; i<Bounds.bottom+2; i++){
+  for(var i=limites.superior-1, str=""; i<limites.inferior+2; i++){
     str+="<div class='row'>";
-    for(var j=Bounds.left-1; j<Bounds.right+2; j++){
+    for(var j=limites.esquerda-1; j<limites.direita+2; j++){
       str += transformaChar(tabuleiro[j][i]);
     }
     str += "</div>";
@@ -292,7 +293,7 @@ function tabuProHtml(blank){
 
 
 function transformaChar(c){
-  var arr=(c)?['square','letter']:['square'];
+  var arr=(c)?['quadrado','letra']:['quadrado'];
   return EleStr('div',[{a:'class',v:arr}],c);
 }
 
@@ -300,19 +301,19 @@ function transformaChar(c){
 
 // Definindo os objetos
 
-function WordObj(stringValue){
+function objPalavra(stringValue){
   this.string = stringValue;
   this.char = stringValue.split("");
-  this.totalMatches = 0;
+  this.todosEncontros = 0;
   this.effectiveMatches = 0;
-  this.successfulMatches = [];  
+  this.combinacoesCertas = [];  
 }
 
 
 // Eventos
 
 function RegisterEvents(){
-  document.getElementById("crossword").onfocus = function (){ 
+  document.getElementById("cacaPalavra").onfocus = function (){ 
     return false; }
   document.getElementById("btnCriar").addEventListener('click',Criar,false);
   document.getElementById("btnjogar").addEventListener('click',jogar,false);
@@ -322,37 +323,41 @@ RegisterEvents();
 
 // Funções de ajuda
 
-function EleStr(e,c,h){
+function EleStr(e,c,h){ //Element string
   h = (h)?h:"";
   for(var i=0,s="<"+e+" "; i<c.length; i++){
-    s+=c[i].a+ "='"+ArrayToString(c[i].v," ")+"' ";    
+    s+=c[i].a+ "='"+vetorToString(c[i].v," ")+"' ";    
   }
   return (s+">"+h+"</"+e+">");
 }
 
-function ArrayToString(a,s){
-  if(a===null||a.length<1)return "";
-  if(s===null)s=",";
-  for(var r=a[0],i=1;i<a.length;i++){r+=s+a[i];}
+function vetorToString(vetor,string){
+  if(vetor===null||vetor.length<1)return "";
+  if(string===null)string=",";
+  for(var r=vetor[0],i=1;i<vetor.length;i++){r+=string+vetor[i];}
   return r;
 }
 
-function AddClass(ele,classStr){
-  ele.className = ele.className.replaceAll(' '+classStr,'')+' '+classStr;
+// Ele da um replace no nome da classe, mudando para hide(escondido) ou somenteLer o char que for escrito
+function adicionaClasse(ele,classStr){
+  ele.className = ele.className.replaceAll(' '+classStr,'')+' '+classStr; 
 }
 
-function RemoveClass(ele,classStr){
+//Mesma coisa que a função de cima, só que no caso ele ao invés de adicionar só muda
+function retiraClasse(ele,classStr){
   ele.className = ele.className.replaceAll(' '+classStr,'');
 }
 
-function ToggleClass(ele,classStr){
+//Mesmos parametros, só que no caso ele alterna a classe, no caso da string ser igual ao tamanho da classe do elemento
+function alternaClasse(ele,classStr){
   var str = ele.className.replaceAll(' '+classStr,'');
   ele.className = (str.length===ele.className.length)?str+' '+classStr:str;
 }
 
-String.prototype.replaceAll = function (replaceThis, withThis) {
-   var re = new RegExp(replaceThis,"g"); 
-   return this.replace(re, withThis);
+// Usado para encontrar uma combinação entre uma expressão regular e uma string, e para substituir uma substring combinada com uma nova substring.
+String.prototype.replaceAll = function (substituiIsso, comIsso) {
+   var re = new RegExp(substituiIsso,"g"); // Expressão regular para substituição.
+   return this.replace(re, comIsso);
 };
 
 
