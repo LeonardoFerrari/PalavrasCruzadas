@@ -146,7 +146,7 @@ function addPalavraTabuleiro(){
     
     for(i = 0, len = palavras.length; i < len; i++){
       palavraAtual = palavras[i];
-      palavraAtual.effectiveMatches = 0;
+      palavraAtual.combinacoesEfetivas = 0;
       palavraAtual.combinacoesCertas = [];
       for(var j = 0, lenJ = palavraAtual.char.length; j < lenJ; j++){
         charAtual = palavraAtual.char[j];
@@ -155,7 +155,7 @@ function addPalavraTabuleiro(){
           for (var l = 0, lenL = palavraTeste.char.length; l < lenL; l++){
             charTeste = palavraTeste.char[l];            
             if (charAtual === charTeste){
-              palavraAtual.effectiveMatches++;
+              palavraAtual.combinacoesEfetivas++;
               
               var cruzadaAtual = {x:palavraTeste.x,y:palavraTeste.y,dir:0};              
               if(palavraTeste.dir === 0){                
@@ -230,7 +230,7 @@ function addPalavraTabuleiro(){
         }
       }
       
-      CombinacaoAtualDiff = palavraAtual.todosEncontros - palavraAtual.effectiveMatches;
+      CombinacaoAtualDiff = palavraAtual.todosEncontros - palavraAtual.combinacoesEfetivas;
       
       if (CombinacaoAtualDiff<minCombinaDiff && palavraAtual.combinacoesCertas.length>0){
         CombinacaoAtualDiff = minCombinaDiff;
@@ -305,7 +305,7 @@ function objPalavra(stringValue){
   this.string = stringValue;
   this.char = stringValue.split("");
   this.todosEncontros = 0;
-  this.effectiveMatches = 0;
+  this.combinacoesEfetivas = 0;
   this.combinacoesCertas = [];  
 }
 
