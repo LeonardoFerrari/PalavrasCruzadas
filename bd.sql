@@ -1,0 +1,114 @@
+DROP DATABASE IF EXISTS palavras;
+
+CREATE DATABASE palavras;
+
+USE palavras;
+
+CREATE TABLE words
+(
+   ID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+   Palavra varchar(20),
+   QntdLetras int(32),
+   Dica varchar(120)
+);
+
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('vó','2','segunda mãe.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('fé','2','acreditar intrinsecamente.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('pé','2','cabeça, ombro, joelho e ...');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('OK','2','ryokai desu.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('dó','2','sentir pena de alguém.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('sã','2','não é louca, é ...');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('lá','2','"naquele lugar".');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('céu','3','onde as nuvens se encontram.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('paz','3','tranquilidade plena.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('ser','3','... ou não ...');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('sol','3','divindade egípcia "Rá".');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('rio','3','siga a correnteza.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('baú','3','guarda tesouros de avetureiros!');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('clã','3','conjunto de pessoas de uma organização.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('amor','4','sentimento de extrema afeição por alguém.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('mito','4','história, conto não comprovado.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('cedo','4','deus ajuda quem ... madruga.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('medo','4','estado afetivo suscitado pela consciência do perigo.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('você','4','aquele a quem se fala ou se escreve.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('doce','4','de sabor açucarado.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('azar','4','... no jogo, sorte no amor!');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('mútuo','5','que se corresponde de parte a parte, recíproco');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('plena','5','repleta de alguma coisa.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('moral','5','pertencente ao domínio do espírito do homem.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('ontem','5','no dia imediatamente anterior àquele em que se está.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('laico','5','não pertence ao clero nem a uma ordem religiosa.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('certo','5','que não é passível de dúvida; seguro.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('único','5','de que só existe um no seu gênero ou espécie.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('união','5','adjacência, conjunção ou justaposição de dois ou mais seres, coisas etc.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('facção','6','grupo de indivíduos partidários de uma mesma causa em oposição à de outros grupos');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('julgar','6','tomar decisão, deliberar na qualidade de juiz ou árbitro.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('lícito','6','que ou o que é justo ou permitido.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('aludir','6','fazer rápida menção a; referir-se.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('coesão','6','unidade lógica, coerência de um pensamento, de uma obra.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('método','6','procedimento, técnica ou meio de fazer alguma coisa.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('origem','6','ponto inicial de uma ação ou coisa que tem continuidade no tempo e/ou no espaço.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('mártir','6','pessoa submetida a suplícios, ou mesmo à morte, pela recusa de renunciar à fé cristã ou a qualquer de seus princípios.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('cético','6','aquele que não confia, duvida; descrente.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('exceção','7','desvio de uma regra ou de um padrão convencionalmente aceito.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('análogo','7','função semelhante mas de origem embriologicamente distinta');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('cinismo','7','atitude ou caráter de pessoa que revela descaso pelas convenções sociais e pela moral vigente.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('família','7','Ohana quer dizer ... e ... quer dizer nunca mais abandonar.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('volúpia','7','grande prazer sexual, luxúria.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('demanda','7','manifestação de um desejo, pedido ou exigência. solicitação.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('matilha','7','conjunto de cães de caça.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('evasivo','7','que se emprega para iludir, para escapar de uma resposta mais direta.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('permuta','7','troca de coisas entre seus respectivos donos. troca recíproca.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('inerente','8','que existe como um constitutivo ou uma característica essencial de alguém ou de algo.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('analogia','8','relação de semelhança entre coisas ou fatos distintos.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('preceder','8','estar adiante de, ir na frente de, chegar ou ocorrer antes de; anteceder.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('inóspito','8','em que não se pode viver; rude, áspero.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('preceito','8','o que se recomenda praticar; regra, norma.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('inefável','8','causa imenso prazer; inebriante, delicioso, encantador.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('submeter','8','reduzir à obediência, à dependência, ou render-se.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('expansão','8','dilatação de um corpo ou um gás.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('vagabundo','9','quem leva vida errante.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('magnânimo','9','quem denota alta generosidade e bondade.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('emergente','9','algo que procede ou é consequência de outra coisa.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('discussão','9','exame detalhado de um assunto entre interlocutores, levantado-se prós e contras.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('ancestral','9','antigo, que é relativo a antepassados.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('acessível','9','algo possível de se conseguir ou comprar, adquirir, possuir.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('rescindir','9','tornar nulo, dissolvido.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('arrogante','9','aquele que demonstra soberba, presunção.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('ontologia','9','reflexão a respeito do sentido abrangente do ser, como aquilo que torna possível as múltiplas existências.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('perpetrar','9','cometer, praticar atos moralmente inaceitáveis.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('clemência','9','sentimento ou disposição para perdoar as ofensas e minorar os castigos.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('translado','9','relacionado ao ato de transportar, comumente associado aos restos mortais.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('anacrônico','10','que está em desacordo com os usos e costumes de uma época.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('desfalecer','10','diminuir em força, disposição, enfraquecer, esmorecer, fraquejar.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('intimidade','10','atribuida a uma relação muito próxima, familiaridade.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('transmutar','10','mudar o estado, de um lugar para outro, mudar de circunstância.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('sobriedade','10','estado de quem não está bebado. Moderação, temperança, equilíbrio.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('suficiente','10','aquilo que satisfaz ou que basta, que é bastante.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('sonoridade','10','som claro, harmonioso, suave, agradável ao ouvido.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('lamentável','10','que merece piedade pelo seu caráter medíocre.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('espontânea','10','natural, repentina, relacionado ao estado em que algo aconteceu');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('deplorável','10','que desperta aversão. Algo execrável, abominável e até mesmo detestável');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('transsexual','11','transgênero, o  qual identidade de gênero difere da designada no nascimento');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('avassalador','11','algo que oprime, subjuga e transtorma e abala o estado.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('abrangência','11','que agrega várias coisas, que abarca a parte geral de algo');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('anacronismo','11','atitude ou fato que não está de acordo com sua época.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('controverso','11','que provoca opinião contrária, indica oposição ao que se é esperado');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('procedência','11','característica do que é procedente.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('sinceridade','11','ato de ser honesto, verdadeiro em relação a algo');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('heterogênea','11','que é composto por elementos diferentes, quando em uma solução, por exemplo.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('surrealista','11','movimento artístico literário de origem francesa, caracterizado pela expressão espontânea.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('coronelismo','11','prática política própria do meio rual e das cidades de interior, ligada a um militar controlador.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('dimensionar','11','calcular proporções, adquirir a relação em função do uso.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('especificar','11','determinar a espécie de algo, aferir uma classificação.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('aconchegante','12','que acolhe agradavelmente, ambiente ...');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('discrepância','12','característica de algo desigual, diferente.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('compreensivo','12','aquele que está apto a compreender, argucioso e simpático.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('planejamento','12','preparação e estipulação de um plano para uma situação.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('gradualmente','12','de maneira crescente, seguindo um ritmo.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('consequência','12','aquilo que é produzido por uma causa. Resultado de certa condição.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('decomposição','12','separação dos elementos formadores ou constituintes de algo.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('sucateamento','12','estado de degradação e posterior abandono de alguma coisa.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('catastrófico','12','de proporções enormes, um evento que gera caos, um evento ...');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('reformulação','12','mudança de algo a partir de uma analise do mesmo, ... de um enunciado.');
+INSERT INTO words (Palavra,QntdLetras,Dica) VALUES ('inconformada','12','falta de conformação, ela está ... com a situação em que se encontra.');

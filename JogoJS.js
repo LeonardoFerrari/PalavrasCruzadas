@@ -2,7 +2,7 @@
 
 var tabuleiro, vetorPalavra, palavras, palavrasAtivas, auxCriar;
 
-var limites = {  
+var limites = {   
   superior:0, direita:0, inferior:0, esquerda:0,
 
   Atualiza:function(x,y){
@@ -19,6 +19,7 @@ var limites = {
     this.esquerda = 999;    
   }
 };
+
 
 
 // Main

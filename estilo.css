@@ -68,6 +68,9 @@ body{
   -ms-user-select: none;
   user-select: none;
 }
+.forms{
+	visibility: hidden;
+}
 .letra{
   background-color: rgb(255,255,255);
    
@@ -107,3 +110,5 @@ body{
   color:#303030 !important;
   background:none;
 }
+
+	

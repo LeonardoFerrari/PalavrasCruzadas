@@ -1,0 +1,98 @@
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Jogo de palavras cruzadas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="estilo.css" />
+    <script src="testzera.js"></script>
+</head>
+<body onload="getOutput()">
+        
+
+<div class = "linha" id="output">
+               <form class ="forms" name="urlform" action="salvado.php" method="post">
+						<h1 class="form" id="safe"> Forms</h1>
+                        <label class="forms">Palavras: </label>
+                        <input type="text" name="url" size="30"><br>
+                        <label class="forms">Dicas: </label>
+                        <input type="text" name="descr" size="45"><br>
+                    </form> 
+        </div>		
+        
+        <div class="container">
+            <button class="btn" id="btnCriar" action="sad.php" method="get" onclick="return getOutput();">Criar</button>
+            <button class="btn" id="btnJogar" onclick="return getOutput2();">Jogar</button>
+            <br /><br />
+    
+            <div class="center cacaPalavra" id="cacaPalavra"></div><br />
+    
+            <div class="center">
+    
+                <div class="linha">
+					<input class="palavra" type="text" value="Tucano" />
+                    <input class="dica" value="Ave com bico longo tipicamente associada ao Brasil." />
+                </div>
+    
+                <div class="linha">
+                    <input class="palavra" type="text" value="Bingo" />
+                    <input class="dica" value="Jogo onde os jogados gritam o nome do mesmo quando completam uma sequência" />
+                </div>
+    
+                <div class="linha">
+                    <input class="palavra" type="text" value="Golfinho" />
+                    <input class="dica" value="Animal marinho que com que as pessoas brincam e tiram fotos em parques" />
+                </div>
+    
+                <div class="linha">
+                    <input class="palavra" type="text" value="Porco" />
+                    <input class="dica" value="Mamífero cor de rosa que faz: -'nhoc'" />
+                </div>
+    
+                <div class="linha">
+                    <input class="palavra" type="text" value="Mamãe" />
+                    <input class="dica" value="Forma carinhosa de chamar sua progenitora" />
+                </div>
+    
+                <div class="linha">
+                    <input class="palavra" type="text" value="Chupeta" />
+                    <input class="dica" value="Objeto que os nenéns não largam, apesar de estarem sempre derrubando" />
+                </div>
+    
+                <div class="linha">
+                    <input class="palavra" type="text" value="Professor" />
+                    <input class="dica" value="Profissional importantíssimo que leciona matérias para estudantes" />
+                </div>
+    
+                <div class="linha">
+                    <input class="palavra" type="text" value="Celular" />
+                    <input class="dica" value="Aparelhos eletrônicos pessoais portáteis que estão na mão de todos atualmente" />
+                </div>
+    
+                <div class="linha">
+                    <input class="palavra" type="text" value="Novinho" />
+                    <input class="dica" value="Diminutivo de alguém novo" />
+                </div>
+    
+                <div class="linha">
+                    <input class="palavra" type="text" value="Cambalhota" />
+                    <input class="dica" value="Manobra realizada por atletas olímpicos e praticantes de Parkour" />
+                </div>
+    
+                <div class="linha">
+                    <input class="palavra" type="text" value="Arroz" />
+                    <input class="dica" value="Plantado em larga escala no Japão, base da alimentação brasileira" />
+                </div>
+    
+                <div class="linha">
+                    <input class="palavra" type="text" value="Caçamba" />
+                    <input class="dica" value="Alugada para armazenar lixos de construções, para não acumular entulho nas ruas" />
+                </div>
+    
+
+        </div>   
+
+		<form method="post" action="deish.php" id="botoes">
+         </form>
+    </body>
+   <script src="JogoJS.js"></script>
+</html>    
